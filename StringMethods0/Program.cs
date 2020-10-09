@@ -11,10 +11,15 @@ namespace StringMethods0
     {
         static void Main(string[] args)
         {
-            string word;string trmchr;
+            string word;
             
-            word = Console.ReadLine();
-            trmchr = Console.ReadLine();
+
+            /*word = Console.ReadLine();
+            oldstr = Console.ReadLine();
+            newstr = Console.ReadLine();*/
+            //word = Console.ReadLine();
+
+
             /* word = Console.ReadLine();
              Console.WriteLine(MyTrim(word));
             Console.WriteLine("Program bitti");*/
@@ -24,9 +29,53 @@ namespace StringMethods0
             /*word = Console.ReadLine();
             trmchr = Console.ReadLine();
             Console.WriteLine(MyTrimStart(word, trmchr));*/
-            Console.WriteLine(MyTrimEnd(word, trmchr));
+            /*word = Console.ReadLine();
+            trmchr = Console.ReadLine();
+            Console.WriteLine(MyTrimEnd(word, trmchr));*/
+            /*word = Console.ReadLine();
+            Console.WriteLine(MyClone(word));*/
+            /*char oldchr; char newchr;
+            word = Console.ReadLine();
+            Console.WriteLine("Değiştirmek istediğiniz karakteri giriniz:");
+            oldchr = Console.ReadKey().KeyChar;
+            Console.WriteLine("\nYerleştirmek istediğiniz karakteri giriniz:");
+            newchr = Console.ReadKey().KeyChar;
+            Console.WriteLine();
+            Console.WriteLine(MyReplaceChr(word, oldchr, newchr));*/
+            
             Console.ReadLine();
 
+        }
+        static string MyReplaceStr(string word,string oldstr,string newstr)
+        {
+            
+            
+            
+            
+            return null;
+        }
+        static char[] MyReplaceChr(string word,char oldchr,char newchr)
+        {
+            int a;
+           
+            a=word.Length;
+            
+            char[] word1 = new char[a];
+
+            for (int i = 0; i < a; i++)
+            {
+                
+                if (word[i] == oldchr)
+                {
+                    
+                    word1[i] = newchr;
+                }
+                else
+                { word1[i] = word[i]; 
+                }
+                
+            }
+            return word1;
         }
         static string MyTrim(string word)
         {
@@ -177,6 +226,10 @@ namespace StringMethods0
             word = ReverseStr(word);
             word = MyTrimStart(word,chr);
             word = ReverseStr(word);
+            return word;
+        }
+        static string MyClone(string word)
+        {
             return word;
         }
     }
