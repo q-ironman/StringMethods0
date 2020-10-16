@@ -38,13 +38,38 @@ namespace StringMethods0
             string word =("Babam bana araba aldı mı");
             //Console.WriteLine(NewReplace(word, "Babam","Dayım"));
             //Console.WriteLine(NewTrimStart("aaaaaaandfvndaaddkaaaaa",'a'));
-            Console.WriteLine(word.Remove(6,4));
-            Console.WriteLine(MyRemove(word,6,4));
+            /*Console.WriteLine(word.Remove(6,4));
+            Console.WriteLine(MyRemove(word,6,4));*/
+            Console.WriteLine(word.Substring(5,4));
+            //Console.WriteLine(word.Remove(5, 4));
+            Console.WriteLine(MySubstring(word,5,4));
             Console.ReadLine();
         }
 
 
-        static string MyRemove(string word,int start_index,int count)
+        
+        static string MySubstring(string word,int startIndex)
+        {
+            //StringBuilder new_str = new StringBuilder();
+            string new_str;
+            int lngth = word.Length;
+            new_str = ReverseStr(word);
+            new_str = MyRemove(new_str,lngth-startIndex);
+            return ReverseStr(new_str);
+        }
+        static string MySubstring(string word, int startIndex,int length)
+        {
+            StringBuilder new_str = new StringBuilder();
+            int i = startIndex ;
+            for (;i<length+startIndex;i++)
+            {
+                new_str.Append(word[i]);
+            }
+            
+            return new_str.ToString();
+
+        }
+        static string MyRemove(string word,int startIndex,int count)
         {
 
             var word_length = word.Length;
@@ -53,7 +78,7 @@ namespace StringMethods0
             for (;i<word_length;i++)
             {
                 
-                if (i==start_index)
+                if (i==startIndex)
                 {
                     i += count;
                     if (i >= word_length)
@@ -72,7 +97,7 @@ namespace StringMethods0
             
             return new_str.ToString() ;
         }
-        static string MyRemove(string word,int start_index)
+        static string MyRemove(string word,int startIndex)
         {
             /*var word_length = word.Length;
             StringBuilder new_str = new StringBuilder();
@@ -90,8 +115,8 @@ namespace StringMethods0
         End:;
             return new_str.ToString() ;*/
             int word_length = word.Length;
-            int count = word_length-start_index;
-            return MyRemove(word,start_index,count);
+            int count = word_length-startIndex;
+            return MyRemove(word,startIndex,count);
         }
         static string NewReplace2(string word, string oldstr, string newstr)
         {
