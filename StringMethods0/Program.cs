@@ -35,14 +35,129 @@ namespace StringMethods0
             Console.WriteLine(NewTrim("aabbbhfjdfaabbjfddbbbbaa",'a','b'));
             Console.WriteLine(NewTrim("    dsfnsjfsfn    "));*/
 
-            string word =("Babam bana araba aldı hem de sarı renkli araba");
-            Console.WriteLine(NewReplace(word, "araba", "tır"));
+            string word =("Babam bana araba aldı mı");
+            //Console.WriteLine(NewReplace(word, "Babam","Dayım"));
             //Console.WriteLine(NewTrimStart("aaaaaaandfvndaaddkaaaaa",'a'));
-            
-            
+            Console.WriteLine(word.Remove(6,4));
+            Console.WriteLine(MyRemove(word,6,4));
             Console.ReadLine();
         }
 
+
+        static string MyRemove(string word,int start_index,int count)
+        {
+
+            var word_length = word.Length;
+            StringBuilder new_str = new StringBuilder();
+            int i = 0;
+            for (;i<word_length;i++)
+            {
+                
+                if (i==start_index)
+                {
+                    i += count;
+                    if (i >= word_length)
+                    {
+                        break;
+                    }
+                    new_str.Append(word[i]);
+                    
+                }
+                
+                else
+                {
+                    new_str.Append(word[i]);
+                }      
+            }
+            
+            return new_str.ToString() ;
+        }
+        static string MyRemove(string word,int start_index)
+        {
+            /*var word_length = word.Length;
+            StringBuilder new_str = new StringBuilder();
+            for (int i = 0;i<word_length;i++)
+            {
+                if (i==start_index)
+                {
+                    goto End;
+                }
+                else
+                {
+                    new_str.Append(word[i]);
+                }
+            }
+        End:;
+            return new_str.ToString() ;*/
+            int word_length = word.Length;
+            int count = word_length-start_index;
+            return MyRemove(word,start_index,count);
+        }
+        static string NewReplace2(string word, string oldstr, string newstr)
+        {
+            StringBuilder new_str = new StringBuilder();
+            int word_length = word.Length;
+            int oldstr_length = oldstr.Length;
+            int i = 0;
+            for (; i < word_length; i++)
+            {
+                for (int j = 0; j < oldstr_length; j++)
+                {
+                    if (word[i + j] != oldstr[j])
+                    {
+                        new_str.Append(word[i]);
+                        goto end;
+                    }
+                }
+                new_str.Append(newstr);
+                i += oldstr_length - 1;
+            end:;
+            }
+            return new_str.ToString();
+        }
+
+        static string NewReplace(string word, string oldstr, string newstr)
+        {
+            StringBuilder new_str = new StringBuilder();
+            int word_length = word.Length;
+            int oldstr_length = oldstr.Length;
+            int k = 0;
+            int i = 0;
+            bool match = false;
+            for (; i < word_length; i++)
+            {
+                k = i;
+                for (int j = 0; j < oldstr_length; j++)
+                {
+                    if (word[k] == oldstr[j])
+                    {
+                        match = true;
+                        k += 1;
+                    }
+                    else
+                    {
+                        match = false;
+                        break;
+                    }
+                }
+                if (match)
+                {
+                    new_str.Append(newstr);
+                    i += oldstr_length - 1;
+                }
+                else
+                {
+                    new_str.Append(word[i]);
+                }
+
+            }
+
+
+
+
+
+            return new_str.ToString();
+        }
         static string NewTrimStart(string word, params char[] charToRemove)
         {
             bool exists;
@@ -135,48 +250,7 @@ namespace StringMethods0
             
             return sb.ToString() ;
         }
-        static string NewReplace(string word,string oldstr,string newstr)
-        {
-            StringBuilder new_str = new StringBuilder();
-            int word_length = word.Length;
-            int oldstr_length = oldstr.Length;
-            int k = 0;
-            int i = 0;
-            bool match=false;
-            for(; i < word_length; i++)
-            {
-                k = i;
-                for(int j = 0; j < oldstr_length; j++)
-                {
-                    if (word[k] == oldstr[j])
-                    {
-                        match = true;
-                        k += 1;
-                    }
-                    else
-                    {
-                        match = false;                        
-                        break;
-                    }
-                }
-                if (match)
-                {
-                    new_str.Append(newstr);
-                    i += oldstr_length - 1;
-                }
-                else 
-                {
-                    new_str.Append(word[i]);
-                }
-
-            }
-            
-            
-            
-            
-            
-            return new_str.ToString();
-        }
+        
         static string MyReplace(string word,char oldchr,char newchr)
         {
             int a;
