@@ -35,19 +35,68 @@ namespace StringMethods0
             Console.WriteLine(NewTrim("aabbbhfjdfaabbjfddbbbbaa",'a','b'));
             Console.WriteLine(NewTrim("    dsfnsjfsfn    "));*/
 
-            string word =("Babam bana araba aldı mı");
-            //Console.WriteLine(NewReplace(word, "Babam","Dayım"));
-            //Console.WriteLine(NewTrimStart("aaaaaaandfvndaaddkaaaaa",'a'));
-            /*Console.WriteLine(word.Remove(6,4));
-            Console.WriteLine(MyRemove(word,6,4));*/
-            Console.WriteLine(word.Substring(5,4));
-            //Console.WriteLine(word.Remove(5, 4));
-            Console.WriteLine(MySubstring(word,5,4));
+            string word =("Babam; bana: araba; aldı, mı");
+            string[] split_string = word.Split('r');
+            foreach (String s in split_string)
+            {
+                Console.WriteLine(s);
+            }
+            string[] vs = MySplit(word,'r');
+            foreach (string s in vs)
+            {
+                Console.WriteLine(s);
+            }
             Console.ReadLine();
         }
 
 
         
+        
+        static string[] MySplit(string word, params char[] separator)
+        {
+            var separeted_strings = new List<string>();
+            StringBuilder separeted_string = new StringBuilder();
+            bool catch_chr = false;
+            for(int i = 0; i < word.Length; i++)
+            {
+                for(int j = 0 ; j < separator.Length; j++)
+                {
+                    
+                    
+                    if (word[i]==separator[j])
+                    {
+                        catch_chr = true;
+                    }
+                
+                    
+                }
+                if (catch_chr)
+                {
+                    separeted_strings.Add(separeted_string.ToString());
+                    //Console.WriteLine(separeted_string.ToString());
+                    separeted_string = new StringBuilder();
+                    catch_chr = false;
+                    
+                }
+                else
+                {
+                    separeted_string.Append(word[i]);
+                }
+
+                
+            }
+            separeted_strings.Add(separeted_string.ToString());
+            //Console.WriteLine(separeted_string.ToString());
+            string[] separeted_strings_str = new string[separeted_strings.Count];
+            for(int k = 0;k<separeted_strings_str.Length;k++)
+            {
+                separeted_strings_str[k] = separeted_strings[k];
+            }
+            
+            
+            
+            return separeted_strings_str;
+        }
         static string MySubstring(string word,int startIndex)
         {
             //StringBuilder new_str = new StringBuilder();
@@ -140,7 +189,6 @@ namespace StringMethods0
             }
             return new_str.ToString();
         }
-
         static string NewReplace(string word, string oldstr, string newstr)
         {
             StringBuilder new_str = new StringBuilder();
@@ -275,7 +323,6 @@ namespace StringMethods0
             
             return sb.ToString() ;
         }
-        
         static string MyReplace(string word,char oldchr,char newchr)
         {
             int a;
